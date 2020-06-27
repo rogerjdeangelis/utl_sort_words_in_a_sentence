@@ -83,7 +83,14 @@ Sort words in a sentence (not so easy in SAS?)
     ```  label(have$SENTENCE)<-"SENTENCE";                                                                                                                            ```
     ```  write.xport(have,file="d:/xpt/have.xpt");                                                                                                                    ```
     ```  ');                                                                                                                                                          ```
-    ```                                                                                                                                                               ```
+    ```      proc datasets lib=work mt=view mt=data;         
+               delete __ren001 want;                          
+             run;quit;                                       
+                                                
+    /* need this if you rerun                       
+      NOTE: Deleting WORK.__REN001 (memtype=DATA).    
+      NOTE: Deleting WORK.WANT (memtype=VIEW).        
+    */                                                                                                                                                                               ```
     ```  libname xpt xport  "d:/xpt/have.xpt";                                                                                                                        ```
     ```  data want;                                                                                                                                                   ```
     ```    %utl_rens(xpt.have);                                                                                                                                       ```
